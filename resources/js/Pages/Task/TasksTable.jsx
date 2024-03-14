@@ -1,7 +1,7 @@
 import Pagination from '@/Components/Pagination';
 import SelectInput from '@/Components/SelectInput';
 import TextInput from '@/Components/TextInput';
-import TableHeading from '@/Components/TableHeading';
+import TableHeading from '@/Components/TeableHeading';
 import { TASK_STATUS_CLASS_MAP, TASK_STATUS_TEXT_MAP } from '@/constants.jsx';
 import { Link, router } from '@inertiajs/react';
 
@@ -48,7 +48,6 @@ export default function TasksTable({
     }
     router.delete(route('task.destroy', task.id));
   };
-
   return (
     <>
       {success && (
@@ -144,51 +143,57 @@ export default function TasksTable({
             </tr>
           </thead>
           <tbody>
-            {tasks.data.map((task) => (
-              <tr
-                className='bg-white border-b dark:bg-gray-800 dark:border-gray-700'
-                key={task.id}
-              >
-                <td className='px-3 py-2'>{task.id}</td>
-                <td className='px-3 py-2'>
-                  <img src={task.image_path} style={{ width: 60 }} />
-                </td>
-                {!hideProjectColumn && (
-                  <td className='px-3 py-2'>{task.project.name}</td>
-                )}
-                <th className='px-3 py-2 text-gray-500 hover:underline'>
-                  <Link href={route('task.show', task.id)}>{task.name}</Link>
-                </th>
-                <td className='px-3 py-2'>
-                  <span
-                    className={
-                      'px-2 py-1 rounded text-nowrap text-white ' +
-                      TASK_STATUS_CLASS_MAP[task.status]
-                    }
-                  >
-                    {TASK_STATUS_TEXT_MAP[task.status]}
-                  </span>
-                </td>
-                <td className='px-3 py-2 text-nowrap'>{task.created_at}</td>
-                <td className='px-3 py-2 text-nowrap'>{task.due_date}</td>
-                {/* {console.log()} */}
-                <td className='px-3 py-2'>{task.createdBy}</td>
-                <td className='px-3 py-2 text-nowrap'>
-                  <Link
-                    href={route('task.edit', task.id)}
-                    className='font-medium text-blue-600 dark:text-blue-500 hover:underline mx-1'
-                  >
-                    Edit
-                  </Link>
-                  <button
-                    onClick={(e) => deleteTask(task)}
-                    className='font-medium text-red-600 dark:text-red-500 hover:underline mx-1'
-                  >
-                    Delete
-                  </button>
-                </td>
+            {tasks.data.length > 0 ? (
+              tasks.data.map((task) => (
+                <tr
+                  className='bg-white border-b dark:bg-gray-800 dark:border-gray-700'
+                  key={task.id}
+                >
+                  <td className='px-3 py-2'>{task.id}</td>
+                  <td className='px-3 py-2'>
+                    <img src={task.image_path} style={{ width: 60 }} />
+                  </td>
+                  {!hideProjectColumn && (
+                    <td className='px-3 py-2'>{task.project.name}</td>
+                  )}
+                  <th className='px-3 py-2 text-gray-500 hover:underline'>
+                    <Link href={route('task.show', task.id)}>{task.name}</Link>
+                  </th>
+                  <td className='px-3 py-2'>
+                    <span
+                      className={
+                        'px-2 py-1 rounded text-nowrap text-white ' +
+                        TASK_STATUS_CLASS_MAP[task.status]
+                      }
+                    >
+                      {TASK_STATUS_TEXT_MAP[task.status]}
+                    </span>
+                  </td>
+                  <td className='px-3 py-2 text-nowrap'>{task.created_at}</td>
+                  <td className='px-3 py-2 text-nowrap'>{task.due_date}</td>
+                  {/* {console.log()} */}
+                  <td className='px-3 py-2'>{task.createdBy.name}</td>
+                  <td className='px-3 py-2 text-nowrap'>
+                    <Link
+                      href={route('task.edit', task.id)}
+                      className='font-medium text-blue-600 dark:text-blue-500 hover:underline mx-1'
+                    >
+                      Edit
+                    </Link>
+                    <button
+                      onClick={(e) => deleteTask(task)}
+                      className='font-medium text-red-600 dark:text-red-500 hover:underline mx-1'
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr className='text-gray-500'>
+                <td>No related task found</td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>

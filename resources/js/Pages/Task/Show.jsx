@@ -6,7 +6,8 @@ import {
   TASK_STATUS_CLASS_MAP,
   TASK_STATUS_TEXT_MAP,
 } from '@/constants.jsx';
-export default function Show({ auth, task }) {
+export default function Show({ auth, task: { data: task } }) {
+  console.log(task.name);
   return (
     <AuthenticatedLayout
       user={auth.user}
@@ -97,7 +98,7 @@ export default function Show({ auth, task }) {
                     <p className='mt-1'>
                       <Link
                         href={route('project.show', task.project.id)}
-                        className='hover:underline'
+                        className='hover:underline text-blue-500'
                       >
                         {task.project.name}
                       </Link>

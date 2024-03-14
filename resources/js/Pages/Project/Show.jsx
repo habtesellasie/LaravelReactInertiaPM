@@ -5,7 +5,13 @@ import {
   PROJECT_STATUS_TEXT_MAP,
 } from '@/constants.jsx';
 import TasksTable from '../Task/TasksTable';
-export default function Show({ auth, success, project, tasks, queryParams }) {
+export default function Show({
+  auth,
+  success,
+  project: { data: project },
+  tasks,
+  queryParams,
+}) {
   return (
     <AuthenticatedLayout
       user={auth.user}
@@ -15,7 +21,7 @@ export default function Show({ auth, success, project, tasks, queryParams }) {
             {`Project "${project.name}"`}
           </h2>
           <Link
-            // href={route('project.edit', project.id)}
+            href={route('project.edit', project.id)}
             className='bg-emerald-500 py-1 px-3 text-white rounded shadow transition-all hover:bg-emerald-600'
           >
             Edit

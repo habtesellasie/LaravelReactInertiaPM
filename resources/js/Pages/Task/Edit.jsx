@@ -6,7 +6,12 @@ import TextInput from '@/Components/TextInput';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 
-export default function Create({ auth, task, projects, users }) {
+export default function Create({
+  auth,
+  task: { data: task },
+  projects,
+  users,
+}) {
   const { data, setData, post, errors, reset } = useForm({
     image: '',
     name: task.name || '',
@@ -178,6 +183,7 @@ export default function Create({ auth, task, projects, users }) {
                   onChange={(e) => setData('assigned_user_id', e.target.value)}
                 >
                   <option value=''>Select User</option>
+
                   {users.data.map((user) => (
                     <option value={user.id} key={user.id}>
                       {user.name}

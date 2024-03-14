@@ -10,6 +10,19 @@ class Task extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'image_path',
+        'status',
+        'priority',
+        'due_date',
+        'assigned_user_id',
+        'created_by',
+        'updated_by',
+        'project_id',
+    ];
+
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
@@ -20,7 +33,7 @@ class Task extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function createBy(): BelongsTo
+    public function createdBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
     }
