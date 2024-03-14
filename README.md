@@ -1,1 +1,15 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Project-to-Task Management App
+
+## Laravel + React + inertiajs
+
+![Dashboard](dashboard.png)
+![Projects](projects.png)
+![Tasks](all-tasks.png)
+![Users](users.png)
+![My Tasks](my-tasks.png)
+![Create New Project](create-new-project.png)
+![Create New Task](create-new-task.png)
+![Create New User](create-new-user.png)
+
+![Show Project](show-project.png)
+![Show Task](show-task.png)
